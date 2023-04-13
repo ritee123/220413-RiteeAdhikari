@@ -1,74 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-    form{
-        border: 1px solid black;
-        max-width: 350px;
-        margin-left: 40%;
-        padding: 10px;
+  <center> <h1>Form</h1></center>
+ 
+  <style>
+    /* Style the form */
+    form {
+      width: 50%;
+      margin: 0 auto;
     }
-
-    label{
-        font-weight: bolder;
-        margin-bottom: 10px;
+    label,
+    input {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
     }
-    input{
-      
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      padding: 20px;
-    }
-    
-    input[type=submit] {
-      background-color: #4CAF50;
-      color: white;
-      padding: 14px 20px;
-      margin: 8px 0;
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
     }
-    
-    input[type=submit]:hover {
-      background-color: #45a049;
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
     }
-</style>
+    /* Style the table */
+    table {
+      width: 50%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #4caf50;
+      color: #fff;
+    }
+    /* Hide the table initially */
+    #user-info {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <form>
-        <label for="Name">Name:</label><br />
-        <input type="text" id="Name" name="Name" > <br/>
-        <label for="Class">Class:</label><br/>
-        <input type="number" id="class" name="Class" ><br/>
-        <label for="Roll no">Roll:</label><br/>
-        <input type="number" id="roll" name="Roll" ><br/>
-        <label for="Phone no">Phone no:</label><br />
-        <input type="text" id="Phone no" name="Phone no" > <br/>
-        <label for="Email">Email:</label><br />
-        <input type="text" id="Email" name="Email"  > <br/>
-        <label for="Gender">Gender:</label><br/>
-        <input type="radio" id="Male" name="male" value="male"/> 
-        <label for="male">Male:</label><br/>
-        <input type="radio" id="Female" name="male" value="Female"/>
-        <label for="female">Female:</label><br />
-        <label for="Subject">Subject:</label><br />
-        <input type="text" id="Subject" name="Subject" /><br/>
-        <input type="checkbox" id="Math" name="Math" value="Math"/>
-        <label for="Math">Math:</label><br />
-        <input type="checkbox" id="Nepali" name="Nepali" value="Nepali"/>
-        <label for="Neplai">Nepali:</label><br />
-        <label for="Points">Points:</label><br />
-        <input type="text" id="points" name="points" > <br/>
-        <label for="Submit">Submit:</label><br />
-        <input type="Submit" id="submit" name="submit" > <br/>
-       
-         </form>
+  <form id="user-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
 
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" required />
+
+    <input type="submit" value="Submit" />
+  </form>
+
+  <!-- Table to display user info -->
+  <table id="user-info">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.querySelector("form");
+    const table = document.querySelector("#user-info tbody");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Get form values
+      const name = document.querySelector("#name").value;
+      const address = document.querySelector("#address").value;
+      const email = document.querySelector("#email").value;
+      const phone = document.querySelector("#phone").value;
+
+      // Append row to table
+      const row = table.insertRow();
+      const nameCell = row.insertCell(0);
+      const addressCell = row.insertCell(1);
+      const emailCell = row.insertCell(2);
+      const phoneCell = row.insertCell(3);
+      nameCell.innerHTML = name;
+      addressCell.innerHTML = address;
+      emailCell.innerHTML = email;
+      phoneCell.innerHTML = phone;
+
+      // Clear form fields
+      form.reset();
+
+      // Show the table
+      document.querySelector("#user-info").style.display = "table";
+    });
+  </script>
     
 </body>
 </html>
