@@ -1,0 +1,64 @@
+.block {
+    display: inline-block;
+    color: white;
+    background-color: purple;
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    box-sizing: content-box;
+}
+.inline {
+    display: block;
+    color: white;
+    background-color: purple;
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    box-sizing: content-box
+
+}
+.block-inline {
+    display: inline;
+    color: white;
+    background-color: purple;
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    box-sizing: content-box
+
+}
+        /* flex method */
+        .center-align{
+            width: 100%;
+            background: red;
+            display: flex;
+            height: 300px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* grid method */
+        .center-align1{
+            display: grid;
+            place-items: center;
+            background: green;
+            height: 300px;
+        }
+
+        /* position method */
+        .center-align3{
+            position: relative;
+            height: 300px;
+            background: salmon;
+
+        }
+        
+        .center-align3 > p{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }

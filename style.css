@@ -1,0 +1,39 @@
+h1 {
+    color: purple;
+}
+
+#first-heading {
+    margin: 25%;
+    font-size: 90px;
+}
+
+.heading {
+    margin-left: 25%;
+    font-size: 60px;
+    position: center;
+    top: 5px;
+    right: 20%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    position: center;
+    font-size: 40px;
+    right: 20%;
+}
+
+a[target="_self"],
+a[target="_parent"],
+a[target="_blank"] {
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+    margin: 5px;
+    position: center;
+}
+
+a[target="_blank"] {
+    background-color: red;
+}
