@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+#quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: aqua;
+}
+
+#score {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#message {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#options {
+    width: 100%;
+}
+
+#options label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#options input[type="radio"] {
+    margin-right: 5px;
+}
+
+#submit-btn {
+    display: block;
+    margin: 0 auto;
+}
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Quiz App</h1>
+        <div id="score">Score: <span id="score-value">0</span></div>
+        <div id="message"></div>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="submit-btn" onclick="checkAnswer()">Submit</button>
+    </div>
+
+    <script>
+        // Quiz data
+        const quizData = [
+            {
+                question: "What is the capital of France?",
+                options: ["Paris", "London", "Berlin", "Madrid"],
+                answer: "Paris"
+            },
+            {
+                question: "What is the highest mountain in the world?",
+                options: ["Mount Everest", "K2", "Makalu", "Lhotse"],
+                answer: "Mount Everest"
+            },
+            {
+                question: "What is the largest planet in our solar system?",
+                options: ["Venus", "Saturn", "Jupiter", "Mars"],
+                answer: "Jupiter"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            const questionContainer = document.getElementById('question');
+            const optionsContainer = document.getElementById('options');
+
+            questionContainer.textContent = quizData[currentQuestionIndex].question;
+            optionsContainer.innerHTML = '';
+
+            for (let i = 0; i < quizData[currentQuestionIndex].options.length; i++) {
+                const option = quizData[currentQuestionIndex].options[i];
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.setAttribute('type', 'radio');
+                input.setAttribute('name', 'answer');
+                input.setAttribute('value', option);
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(option));
+                optionsContainer.appendChild(label);
+            }
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+            const message = document.getElementById('message');
+            const scoreValue = document.getElementById('score-value');
+
+            if (selectedOption) {
+                if (selectedOption.value === quizData[currentQuestionIndex].answer) {
+                    score++;
+                    message.textContent = 'Correct!';
+                } else {
+                    message.textContent = 'Sorry, that\'s not the right answer. Please try again.';
+                }
+
+                scoreValue.textContent = score;
+
+                if (currentQuestionIndex < quizData.length - 1) {
+                    currentQuestionIndex++;
+                    displayQuestion();
+                } else {
+                    message.textContent = 'Quiz finished. Your score is: ' + score;
+                    document.getElementById('submit-btn').disabled = true;
+                }
+            } else {
+                message.textContent = 'Please select an answer.';
+            }
+        }
+
+        // Start the quiz
+        displayQuestion();
+    </script>
+</body>
+</html>
